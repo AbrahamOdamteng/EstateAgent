@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:EstateAgent"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+    <Grid HorizontalAlignment="Left" Height="311" Margin="6,2,0,0" VerticalAlignment="Top" Width="505">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5"/>
     </Grid>
+
 </Window>

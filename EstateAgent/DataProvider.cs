@@ -17,6 +17,8 @@ namespace EstateAgent
             dataContext = new EstateAgentDataContext();
         }
 
+
+        #region Data Readers
         public IQueryable<Landlord> GetLandLords()
         {
             return dataContext.Landlords;
@@ -41,5 +43,6 @@ namespace EstateAgent
         {
             return dataContext.Properties.Where(p => p.LandlordId == landlordId);
         }
+        #endregion
     }
 }
