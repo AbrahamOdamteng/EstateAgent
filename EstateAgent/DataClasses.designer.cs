@@ -23,7 +23,7 @@ namespace EstateAgent
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="dgcodetest_AO")]
-	public partial class DataClassesDataContext : System.Data.Linq.DataContext
+	public partial class EstateAgentDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -38,31 +38,31 @@ namespace EstateAgent
     partial void DeleteProperty(Property instance);
     #endregion
 		
-		public DataClassesDataContext() : 
+		public EstateAgentDataContext() : 
 				base(global::EstateAgent.Properties.Settings.Default.dgcodetest_AOConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesDataContext(string connection) : 
+		public EstateAgentDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesDataContext(System.Data.IDbConnection connection) : 
+		public EstateAgentDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public EstateAgentDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClassesDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public EstateAgentDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

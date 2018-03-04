@@ -2,13 +2,13 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataClasses">
   <DataContextMoniker Name="/DataClassesDataContext" />
   <nestedChildShapes>
-    <classShape Id="1a59120b-377d-4d0e-99ad-e232d46c5be4" absoluteBounds="4.375, 0.625, 2, 1.7708968098958331">
+    <classShape Id="1a59120b-377d-4d0e-99ad-e232d46c5be4" absoluteBounds="4.125, 0.625, 2, 1.7708968098958331">
       <DataClassMoniker Name="/DataClassesDataContext/Landlord" />
       <nestedChildShapes>
-        <elementListCompartment Id="0612a686-95e4-40b4-8e2a-e1e2dab5f7af" absoluteBounds="4.39, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0612a686-95e4-40b4-8e2a-e1e2dab5f7af" absoluteBounds="4.14, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.08052987154447 : 2.39589680989583); (5.08052987154447 : 2.64589680989583); (5.68349251552484 : 2.64589680989583); (5.68349251552484 : 2.39589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.83052987154447 : 2.39589680989583); (4.83052987154447 : 2.64589680989583); (5.43349251552484 : 2.64589680989583); (5.43349251552484 : 2.39589680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/Landlord/Landlord_Landlord" />
       <nodes>
         <classShapeMoniker Id="1a59120b-377d-4d0e-99ad-e232d46c5be4" />
@@ -21,7 +21,7 @@
         <elementListCompartment Id="71a0c91c-a59d-493b-a9a1-3b1909a78027" absoluteBounds="4.265, 3.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.66526493577224 : 2.39589680989583); (4.66526493577224 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.84174625776242 : 2.39589680989583); (5.84174625776242 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataClassesDataContext/Landlord/Landlord_Property" />
       <nodes>
         <classShapeMoniker Id="1a59120b-377d-4d0e-99ad-e232d46c5be4" />
