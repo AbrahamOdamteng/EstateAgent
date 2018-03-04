@@ -46,8 +46,9 @@ namespace EstateAgent.WPF
 
         private void ButtonCreateLandlord_Click(object sender, RoutedEventArgs e)
         {
-            var window = new CRULandLordWindow();
-            
+
+            var landLord = new Landlord();
+            var window = new CRULandLordWindow(landLord);
             window.ShowDialog();
         }
     }

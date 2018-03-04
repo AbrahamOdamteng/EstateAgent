@@ -11,49 +11,129 @@ namespace EstateAgent.UnitTests
     [TestFixture]
     public class DataProviderUnitTests
     {
-        [Test]
-        public void Test_GetLandLords()
+        DataProvider dp = new DataProvider();
+        LandLordDTO testLandLord;
+        PropertyDTO testPropertyOne;
+        PropertyDTO testPropertyTwo;
+
+        public DataProviderUnitTests()
         {
-            var dp = new DataProvider();
-            var landlords = dp.GetLandLords();
-            Assert.IsNotNull(landlords);
-            CollectionAssert.IsNotEmpty(landlords);
+            testLandLord = new LandLordDTO()
+            {
+                Forename = "James",
+                Surname = "Bond",
+                Email = "james.bond@mi5.com",
+                Phone = "007-007-007",
+            };
+
+            testPropertyOne = new PropertyDTO()
+            {
+                AvailableFrom = DateTime.Now,
+                Housenumber = "123",
+                PostCode = "{PROP-01#}",
+                Status = PropertyStatus.Vacant.ToString(),
+                Street = "C# Street",
+                Town = ".NET town",
+            };
+
+
+            testPropertyTwo = new PropertyDTO()
+            {
+                AvailableFrom = DateTime.Now,
+                Housenumber = "456",
+                PostCode = "{PROP-02#}",
+                Status = PropertyStatus.Vacant.ToString(),
+                Street = "C# Street",
+                Town = ".NET town",
+            };
+        }
+
+        public void RemoveTestLandlordFromDatabase()
+        {
+            var landLord = dp.GetLandLords().SingleOrDefault(
+                ll => ll.Email == testLandLord.Email);
+
+            if (landLord is null) return;
+        }
+
+
+        public void RemoveTestPropertiesFromDatabase()
+        {
+
+            var postCodes = new string[] { testPropertyOne.PostCode, testPropertyTwo.PostCode };
+
+            var properties = dp.GetProperties().Where( p => postCodes.Contains(p.PostCode)).ToArray();
+
+            if (properties.Any())
+            {
+                
+            }
+        }
+
+        //[SetUp]
+        //public void SetUp()
+        //{
+        //    RemoveTestLandlordFromDatabase();
+        //}
+
+        //[TearDown]
+        //public void TearDown()
+        //{
+        //    RemoveTestLandlordFromDatabase();
+        //}
+
+        [Test]
+        public void Test_CreateLandlord()
+        {
+            var id = dp.CreateLandLord(testLandLord);
+            Assert.AreNotEqual(0, id);
         }
 
         [Test]
-        public void Test_GetLandLord()
+        public void Test_GetLandLand()
         {
-            var dp = new DataProvider();
-            var landlord = dp.GetLandLord(1);
-            Assert.IsNotNull(landlord);
-            Assert.AreEqual(1, landlord.LandlordId);
+            var id = 1;
+            var landLord = dp.GetLandLand(id);
+
+            Assert.AreEqual(id, landLord.Id);
+
+            Assert.NotNull(landLord.Forename);
+            Assert.NotNull(landLord.Surname);
+            Assert.NotNull(landLord.Phone);
+            Assert.NotNull(landLord.Email);
         }
 
         [Test]
-        public void Test_GetProperties()
+        public void Test_UpdateLandLord()
         {
-            var dp = new DataProvider();
-            var properties = dp.GetProperties();
-            Assert.IsNotNull(properties);
-            CollectionAssert.IsNotEmpty(properties);
+
+            var forename = "Ernst";
+            var surname = "Blofeld";
+
+            var id = dp.CreateLandLord(testLandLord);
+
+            var landLord = dp.GetLandLand(id);
+
+            landLord.Forename = forename;
+            landLord.Surname = surname;
+
+            dp.UpdateLandLord(landLord);
+
+            var updatedLandLord = dp.GetLandLand(id);
+
+            Assert.AreEqual(forename, updatedLandLord.Forename);
+            Assert.AreEqual(surname, updatedLandLord.Surname);
         }
 
         [Test]
-        public void Test_GetProperty()
+        public void Test_DeleteLandLord()
         {
-            var dp = new DataProvider();
-            var landlord = dp.GetProperty(1);
-            Assert.IsNotNull(landlord);
-            Assert.AreEqual(1, landlord.LandlordId);
-        }
+            var id = dp.CreateLandLord(testLandLord);
 
-        [Test]
-        public void Test_GetPropertiesOfLandlord()
-        {
-            var dp = new DataProvider();
-            var properties = dp.GetPropertiesOfLandlord(1);
-            Assert.IsNotNull(properties);
-            CollectionAssert.IsNotEmpty(properties);
+            dp.DeleteLandLord(id);
+
+            var deletedLandlord = dp.GetLandLand(id);
+            Assert.IsNull(deletedLandlord);
         }
     }
 }

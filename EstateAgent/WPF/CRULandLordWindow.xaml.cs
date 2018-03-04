@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using EstateAgent.LinqToSQL;
 namespace EstateAgent.WPF
 {
     /// <summary>
@@ -19,17 +19,20 @@ namespace EstateAgent.WPF
     /// </summary>
     public partial class CRULandLordWindow : Window
     {
-        public CRULandLordWindow()
+
+        Landlord landlord;
+        public CRULandLordWindow(Landlord landlord)
         {
             InitializeComponent();
+            this.landlord = landlord;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Data.CollectionViewSource landlordViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("landlordViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            // landlordViewSource.Source = [generic data source]
+
+            landlordViewSource.Source = new Landlord[] { this.landlord };
         }
     }
 }

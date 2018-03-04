@@ -67,6 +67,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dgcodetest_AODataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LinqToSQL\LandLordDTO.cs" />
+    <Compile Include="LinqToSQL\PropertyDTO.cs" />
+    <Compile Include="LinqToSQL\PropertyStatus.cs" />
     <Compile Include="UnitTests\DataProviderUnitTests.cs" />
     <Page Include="WPF\CRULandLordWindow.xaml">
       <SubType>Designer</SubType>
