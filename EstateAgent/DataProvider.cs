@@ -29,17 +29,17 @@ namespace EstateAgent
 
         public IQueryable<Property> GetProperties()
         {
-            throw new NotImplementedException();
+            return dataContext.Properties;
         }
 
-        public Property GetProperty()
+        public Property GetProperty(int propertyId)
         {
-            throw new NotImplementedException();
+            return dataContext.Properties.Single(p => p.PropertyId == propertyId);
         }
 
-        public IQueryable<Property> GetPropertiesOfLandlord(string landlordId)
+        public IQueryable<Property> GetPropertiesOfLandlord(int landlordId)
         {
-            throw new NotImplementedException();
+            return dataContext.Properties.Where(p => p.LandlordId == landlordId);
         }
     }
 }

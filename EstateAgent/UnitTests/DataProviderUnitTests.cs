@@ -27,5 +27,32 @@ namespace EstateAgent.UnitTests
             Assert.IsNotNull(landlord);
             Assert.AreEqual(1, landlord.LandlordId);
         }
+
+        [Test]
+        public void Test_GetProperties()
+        {
+            var dp = new DataProvider();
+            var properties = dp.GetProperties();
+            Assert.IsNotNull(properties);
+            CollectionAssert.IsNotEmpty(properties);
+        }
+
+        [Test]
+        public void Test_GetProperty()
+        {
+            var dp = new DataProvider();
+            var landlord = dp.GetProperty(1);
+            Assert.IsNotNull(landlord);
+            Assert.AreEqual(1, landlord.LandlordId);
+        }
+
+        [Test]
+        public void Test_GetPropertiesOfLandlord()
+        {
+            var dp = new DataProvider();
+            var properties = dp.GetPropertiesOfLandlord(1);
+            Assert.IsNotNull(properties);
+            CollectionAssert.IsNotEmpty(properties);
+        }
     }
 }
