@@ -71,10 +71,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataClasses.designer.cs">
+    <Compile Include="LinqToSQL\EstateAgentDataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses.dbml</DependentUpon>
+      <DependentUpon>EstateAgentDataClasses.dbml</DependentUpon>
     </Compile>
     <Compile Include="LinqToSQL\DataProvider.cs" />
     <Compile Include="WPF\MainWindow.xaml.cs">
@@ -100,13 +100,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataClasses.dbml">
+    <None Include="LinqToSQL\EstateAgentDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses.designer.cs</LastGenOutput>
+      <LastGenOutput>EstateAgentDataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataClasses.dbml.layout">
-      <DependentUpon>DataClasses.dbml</DependentUpon>
+    <None Include="LinqToSQL\EstateAgentDataClasses.dbml.layout">
+      <DependentUpon>EstateAgentDataClasses.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

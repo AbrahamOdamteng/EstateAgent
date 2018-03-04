@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EstateAgent
+namespace EstateAgent.LinqToSQL
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
