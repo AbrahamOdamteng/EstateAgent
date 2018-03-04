@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dgcodetest_AO" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=dgcodetest.database.windows.net;Initial Catalog=dgcodetest_AO;Persist Security Info=True;User ID=ao" SettingsObjectName="EstateAgent.Properties.Settings" SettingsPropertyName="dgcodetest_AOConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Landlords" Member="Landlords">
+    <Type Name="Landlord">
+      <Column Name="LandlordId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Forename" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Association Name="Landlord_Landlord" Member="Landlord2" ThisKey="LandlordId" OtherKey="LandlordId" Type="Landlord" Cardinality="One" />
+      <Association Name="Landlord_Property" Member="Properties" ThisKey="LandlordId" OtherKey="LandlordId" Type="Property" />
+      <Association Name="Landlord_Landlord" Member="Landlord1" ThisKey="LandlordId" OtherKey="LandlordId" Type="Landlord" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Properties" Member="Properties">
+    <Type Name="Property">
+      <Column Name="PropertyId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Housenumber" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Street" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Town" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PostCode" Type="System.String" DbType="VarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="AvailableFrom" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="LandlordId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Landlord_Property" Member="Landlord" ThisKey="LandlordId" OtherKey="LandlordId" Type="Landlord" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
