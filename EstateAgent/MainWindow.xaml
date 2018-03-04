@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:EstateAgent"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid HorizontalAlignment="Left" Height="311" Margin="6,2,0,0" VerticalAlignment="Top" Width="505">
+    <Grid HorizontalAlignment="Stretch"  Margin="6,2,6,2" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5"/>
+        <DataGrid Name="LandlordsDataGrid" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedCellsChanged="LandlordsDataGrid_SelectedCellsChanged" SelectionMode="Single" />
+        <DataGrid Name="PropertiesDataGrid" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 
 </Window>

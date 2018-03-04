@@ -20,9 +20,28 @@ namespace EstateAgent
     /// </summary>
     public partial class MainWindow : Window
     {
+        DataProvider dataProvider;
         public MainWindow()
         {
             InitializeComponent();
+            dataProvider = new DataProvider();
+
+            LandlordsDataGrid.ItemsSource = dataProvider.GetLandLords();
+
+        }
+
+        private void LandlordsDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if( !object.ReferenceEquals(sender,LandlordsDataGrid))
+            {
+                return;
+            }
+
+            if(LandlordsDataGrid.SelectedItem is Landlord selectedLandlord)
+            {
+                PropertiesDataGrid.ItemsSource = dataProvider.GetPropertiesOfLandlord(selectedLandlord.LandlordId);
+            }
+
         }
     }
 }
