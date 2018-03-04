@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using EstateAgent.LinqToSQL;
-namespace EstateAgent
+namespace EstateAgent.WPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -42,6 +42,13 @@ namespace EstateAgent
                 PropertiesDataGrid.ItemsSource = dataProvider.GetPropertiesOfLandlord(selectedLandlord.LandlordId);
             }
 
+        }
+
+        private void ButtonCreateLandlord_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new CRULandLordWindow();
+            
+            window.ShowDialog();
         }
     }
 }

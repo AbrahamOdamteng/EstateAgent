@@ -62,7 +62,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="dgcodetest_AODataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dgcodetest_AODataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="UnitTests\DataProviderUnitTests.cs" />
+    <Page Include="WPF\CRULandLordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +86,9 @@
       <DependentUpon>EstateAgentDataClasses.dbml</DependentUpon>
     </Compile>
     <Compile Include="LinqToSQL\DataProvider.cs" />
+    <Compile Include="WPF\CRULandLordWindow.xaml.cs">
+      <DependentUpon>CRULandLordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPF\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -100,6 +112,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="dgcodetest_AODataSet.xsc">
+      <DependentUpon>dgcodetest_AODataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dgcodetest_AODataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dgcodetest_AODataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dgcodetest_AODataSet.xss">
+      <DependentUpon>dgcodetest_AODataSet.xsd</DependentUpon>
+    </None>
     <None Include="LinqToSQL\EstateAgentDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>EstateAgentDataClasses.designer.cs</LastGenOutput>
@@ -109,6 +132,7 @@
       <DependentUpon>EstateAgentDataClasses.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\EstateAgent.LinqToSQL.Landlord.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
