@@ -12,9 +12,42 @@
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5"/>
-        <DataGrid Name="LandlordsDataGrid" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedCellsChanged="LandlordsDataGrid_SelectedCellsChanged" SelectionMode="Single" />
-        <DataGrid Name="PropertiesDataGrid" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-    </Grid>
 
+        <GroupBox Header="LandLords" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch"   VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button Name="ButtonCreateLandlord" Content="Create" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
+                    <Button Name="ButtonUpdateLandlord" Content="Update" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Width="50" />
+                    <Button Name="ButtonDeleteLandlord" Content="Delete" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
+                </StackPanel>
+
+                <DataGrid Name="LandlordsDataGrid" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedCellsChanged="LandlordsDataGrid_SelectedCellsChanged" SelectionMode="Single" IsReadOnly="True" />
+
+            </Grid>
+        </GroupBox>
+
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Width="5" Grid.RowSpan="2"/>
+
+        <GroupBox Header="Properties" Grid.Column="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch"   VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Button Name="ButtonCreateProperty" Content="Create" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
+                    <Button Name="ButtonUpdateProperty" Content="Update" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Width="50" />
+                    <Button Name="ButtonDeleteProperty" Content="Delete" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
+                </StackPanel>
+
+                <DataGrid Name="PropertiesDataGrid" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" />
+            </Grid>
+        </GroupBox>
+    </Grid>
 </Window>
