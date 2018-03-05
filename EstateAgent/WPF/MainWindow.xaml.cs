@@ -26,8 +26,12 @@ namespace EstateAgent.WPF
             InitializeComponent();
             dataProvider = new DataProvider();
 
-            LandlordsDataGrid.ItemsSource = dataProvider.GetLandLords();
+            RefreshData();
+        }
 
+        void RefreshData()
+        {
+            LandlordsDataGrid.ItemsSource = dataProvider.GetLandLords();
         }
 
         private void LandlordsDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
@@ -46,10 +50,31 @@ namespace EstateAgent.WPF
 
         private void ButtonCreateLandlord_Click(object sender, RoutedEventArgs e)
         {
-
-            var landLord = new Landlord();
+            var landLord = new LandlordDTO();
             var window = new CRULandLordWindow(landLord);
+            window.Title = "Create Landlord";
+            window.CRUButton.Content = "Create";
             window.ShowDialog();
+
+            dataProvider.CreateLandLord(landLord);
+
+            RefreshData();
+        }
+
+        private void ButtonDeleteLandlord_Click(object sender, RoutedEventArgs e)
+        {
+            if (LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
+            {
+                var msg = $"Deleting this landlord will also delete all properties owned by this landlord.\n" +
+                    $" Do you wish to proceed?";
+                var result = MessageBox.Show(msg, "Delete Landlord",MessageBoxButton.YesNo);
+
+                if(result == MessageBoxResult.Yes)
+                {
+                    dataProvider.DeleteLandLord(selectedLandlord.Id);
+                    RefreshData();
+                }
+            }
         }
     }
 }

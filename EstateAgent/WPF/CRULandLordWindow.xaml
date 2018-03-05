@@ -35,7 +35,7 @@
 
         <Label Content="Phone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
         <TextBox x:Name="phoneTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3" Grid.Row="3" Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
-        
-        <Button Name="CRUButton" Grid.ColumnSpan="2" Grid.Column="0" Content="CRU" HorizontalAlignment="Center" Height="22"  Grid.Row="4" VerticalAlignment="Center" Width="100"/>
+
+        <Button Name="CRUButton" Grid.ColumnSpan="2" Grid.Column="0" Content="CRU" HorizontalAlignment="Center" Height="22"  Grid.Row="4" VerticalAlignment="Bottom" Width="100" Margin="58,0,57,1" Click="CRUButton_Click"/>
     </Grid>
 </Window>

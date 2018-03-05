@@ -23,7 +23,7 @@
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <Button Name="ButtonCreateLandlord" Content="Create" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" Click="ButtonCreateLandlord_Click" />
                     <Button Name="ButtonUpdateLandlord" Content="Update" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Width="50" />
-                    <Button Name="ButtonDeleteLandlord" Content="Delete" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
+                    <Button Name="ButtonDeleteLandlord" Content="Delete" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" Click="ButtonDeleteLandlord_Click" />
                 </StackPanel>
 
                 <DataGrid Name="LandlordsDataGrid" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedCellsChanged="LandlordsDataGrid_SelectedCellsChanged" SelectionMode="Single" IsReadOnly="True" />

@@ -15,7 +15,6 @@ namespace EstateAgent.LinqToSQL
         public string Phone { get; set; }
         public string Email { get; set; }
 
-
         public LandlordDTO() { }
 
         public LandlordDTO(string forename, string surname, string email, string phone)

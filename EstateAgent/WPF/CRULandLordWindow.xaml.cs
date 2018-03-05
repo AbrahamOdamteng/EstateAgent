@@ -20,11 +20,11 @@ namespace EstateAgent.WPF
     public partial class CRULandLordWindow : Window
     {
 
-        Landlord landlord;
-        public CRULandLordWindow(Landlord landlord)
+        readonly LandlordDTO Landlord;
+        public CRULandLordWindow(LandlordDTO landlord)
         {
             InitializeComponent();
-            this.landlord = landlord;
+            this.Landlord = landlord;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -32,7 +32,12 @@ namespace EstateAgent.WPF
             System.Windows.Data.CollectionViewSource landlordViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("landlordViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
 
-            landlordViewSource.Source = new Landlord[] { this.landlord };
+            landlordViewSource.Source = new LandlordDTO[] { this.Landlord };
+        }
+
+        private void CRUButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
