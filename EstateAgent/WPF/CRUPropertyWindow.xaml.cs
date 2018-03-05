@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EstateAgent.LinqToSQL;
 
 namespace EstateAgent.WPF
 {
@@ -19,17 +20,30 @@ namespace EstateAgent.WPF
     /// </summary>
     public partial class CRUPropertyWindow : Window
     {
+        readonly PropertyDTO propertyDTO;
         public CRUPropertyWindow()
         {
             InitializeComponent();
         }
 
+        public CRUPropertyWindow(PropertyDTO propertyDto)
+        {
+            InitializeComponent();
+            propertyDTO = propertyDto;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             System.Windows.Data.CollectionViewSource propertyDTOViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("propertyDTOViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
-            // propertyDTOViewSource.Source = [generic data source]
+            if (propertyDTO is null) return;
+
+            propertyDTOViewSource.Source = new PropertyDTO[] { propertyDTO };
+        }
+
+        private void CRUButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

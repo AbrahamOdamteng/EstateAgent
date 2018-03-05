@@ -19,12 +19,18 @@ namespace EstateAgent.LinqToSQL
         public System.DateTime AvailableFrom { get; set; }
         public PropertyStatus Status { get; set; }
         
-
         public PropertyDTO() { }
+
+        public PropertyDTO(int landlordId)
+        {
+            LandlordId = landlordId;
+            AvailableFrom = DateTime.Now;
+        }
 
         public PropertyDTO(Property prop)
         {
             Id = prop.PropertyId;
+            LandlordId = prop.LandlordId;
 
             Housenumber = prop.Housenumber;
             Street = prop.Street;
@@ -32,7 +38,6 @@ namespace EstateAgent.LinqToSQL
             PostCode = prop.PostCode;
             AvailableFrom = prop.AvailableFrom;
             Status = (PropertyStatus) Enum.Parse( typeof(PropertyStatus), prop.Status);
-            LandlordId = prop.LandlordId;
         }
     }
 }

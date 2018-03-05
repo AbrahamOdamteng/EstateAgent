@@ -119,7 +119,7 @@ namespace EstateAgent.LinqToSQL
 
         #region CRUD Property Methods
 
-        public int CreateProperty(PropertyDTO dto, int landlordId)
+        public int CreateProperty(PropertyDTO dto)
         {
             if (dto is null) return 0;
 
@@ -127,7 +127,7 @@ namespace EstateAgent.LinqToSQL
             {
                 AvailableFrom = dto.AvailableFrom,
                 Housenumber = dto.Housenumber,
-                LandlordId = landlordId,
+                LandlordId = dto.LandlordId,
                 PostCode = dto.PostCode,
                 Status = dto.Status.ToString(),
                 Street = dto.Street,

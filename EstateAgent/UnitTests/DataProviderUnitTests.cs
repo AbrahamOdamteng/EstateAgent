@@ -166,7 +166,7 @@ namespace EstateAgent.UnitTests
         public void Test_CreateProperty()
         {
             var llid =  dp.CreateLandLord(testLandLord);
-            var propId =  dp.CreateProperty(testPropertyOne, llid);
+            var propId =  dp.CreateProperty(testPropertyOne);
             Assert.AreNotEqual(0, propId);
         }
 
@@ -174,7 +174,7 @@ namespace EstateAgent.UnitTests
         public void Test_CreateProperty_Null()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propId = dp.CreateProperty(null, llid);
+            var propId = dp.CreateProperty(null);
             Assert.AreEqual(0, propId);
         }
 
@@ -188,7 +188,7 @@ namespace EstateAgent.UnitTests
             var street = "downing street";
 
             var llid = dp.CreateLandLord(testLandLord);
-            var propId = dp.CreateProperty(testPropertyOne, llid);
+            var propId = dp.CreateProperty(testPropertyOne);
             var dto = dp.GetProperty(propId);
 
             dto.AvailableFrom = available;
@@ -214,7 +214,7 @@ namespace EstateAgent.UnitTests
         public void Test_DeleteProperty()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propId = dp.CreateProperty(testPropertyOne, llid);
+            var propId = dp.CreateProperty(testPropertyOne);
             var property = dp.GetProperty(propId);
             Assert.NotNull(property);
             dp.DeleteProperty(propId);
@@ -229,8 +229,8 @@ namespace EstateAgent.UnitTests
         public void Test_AddMultiplePropertiesToLandlord()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propOneId = dp.CreateProperty(testPropertyOne, llid);
-            var propTwoId = dp.CreateProperty(testPropertyTwo, llid);
+            var propOneId = dp.CreateProperty(testPropertyOne);
+            var propTwoId = dp.CreateProperty(testPropertyTwo);
 
             var propOne = dp.GetProperty(propOneId);
             var propTwo = dp.GetProperty(propTwoId);
@@ -243,8 +243,8 @@ namespace EstateAgent.UnitTests
         public void Test_DeleteLandlordWhoHasProperties()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propOneId = dp.CreateProperty(testPropertyOne, llid);
-            var propTwoId = dp.CreateProperty(testPropertyTwo, llid);
+            var propOneId = dp.CreateProperty(testPropertyOne);
+            var propTwoId = dp.CreateProperty(testPropertyTwo);
 
             dp.DeleteLandLord(llid);
         }

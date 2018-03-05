@@ -26,26 +26,26 @@ namespace EstateAgent.WPF
             InitializeComponent();
             dataProvider = new DataProvider();
 
-            RefreshData();
+            RefreshLandlords();
         }
 
-        void RefreshData()
+        void RefreshLandlords()
         {
             LandlordsDataGrid.ItemsSource = dataProvider.GetLandLords();
         }
 
-        private void LandlordsDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            if( !object.ReferenceEquals(sender,LandlordsDataGrid))
-            {
-                return;
-            }
 
-            if(LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
+        void RefreshProperties()
+        {
+            if (LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
             {
                 PropertiesDataGrid.ItemsSource = dataProvider.GetPropertiesOfLandlord(selectedLandlord.Id);
             }
+        }
 
+        private void LandlordsDataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            RefreshProperties();
         }
 
         private void ButtonCreateLandlord_Click(object sender, RoutedEventArgs e)
@@ -58,7 +58,7 @@ namespace EstateAgent.WPF
 
             dataProvider.CreateLandLord(landLord);
 
-            RefreshData();
+            RefreshLandlords();
         }
 
         private void ButtonDeleteLandlord_Click(object sender, RoutedEventArgs e)
@@ -72,7 +72,7 @@ namespace EstateAgent.WPF
                 if(result == MessageBoxResult.Yes)
                 {
                     dataProvider.DeleteLandLord(selectedLandlord.Id);
-                    RefreshData();
+                    RefreshLandlords();
                 }
             }
         }
@@ -89,14 +89,24 @@ namespace EstateAgent.WPF
 
                 dataProvider.UpdateLandLord(selectedLandlord);
 
-                RefreshData();
+                RefreshLandlords();
             }
         }
 
         private void ButtonCreateProperty_Click(object sender, RoutedEventArgs e)
         {
-            var window = new CRUPropertyWindow();
-            window.ShowDialog();
+            if (LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
+            {
+                var newProperty = new PropertyDTO(selectedLandlord.Id);
+
+                var window = new CRUPropertyWindow(newProperty);
+
+                window.ShowDialog();
+                dataProvider.CreateProperty(newProperty);
+                RefreshProperties();
+            }
+
+
 
         }
     }
