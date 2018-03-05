@@ -109,5 +109,35 @@ namespace EstateAgent.WPF
 
 
         }
+
+        private void ButtonDeleteProperty_Click(object sender, RoutedEventArgs e)
+        {
+            if (PropertiesDataGrid.SelectedItem is PropertyDTO selectedProperty)
+            {
+                var msg = $"Are you sure that you want to delete this property?";
+
+                var result = MessageBox.Show(msg, "Delete Property", MessageBoxButton.YesNo,MessageBoxImage.Warning);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    dataProvider.DeleteProperty(selectedProperty.Id);
+                    RefreshProperties();
+                }
+            }
+        }
+
+        private void ButtonUpdateProperty_Click(object sender, RoutedEventArgs e)
+        {
+            if (PropertiesDataGrid.SelectedItem is PropertyDTO selectedProperty)
+            {
+                var window = new CRUPropertyWindow(selectedProperty);
+
+                window.ShowDialog();
+
+                dataProvider.UpdateProperty(selectedProperty);
+
+                RefreshLandlords();
+            }
+        }
     }
 }
