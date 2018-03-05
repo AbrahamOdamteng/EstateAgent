@@ -102,6 +102,9 @@ namespace EstateAgent.LinqToSQL
         public void DeleteLandLord(int landLordId)
         {
             var landlord = dataContext.Landlords.Single(ll => ll.LandlordId == landLordId);
+            var landLordProperties = dataContext.Properties.Where(p => p.LandlordId == landLordId);
+
+            dataContext.Properties.DeleteAllOnSubmit(landLordProperties);
             dataContext.Landlords.DeleteOnSubmit(landlord);
             dataContext.SubmitChanges();
         }

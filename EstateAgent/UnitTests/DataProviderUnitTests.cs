@@ -223,5 +223,29 @@ namespace EstateAgent.UnitTests
 
         }
         #endregion
+
+        [Test]
+        public void Test_AddMultiplePropertiesToLandlord()
+        {
+            var llid = dp.CreateLandLord(testLandLord);
+            var propOneId = dp.CreateProperty(testPropertyOne, llid);
+            var propTwoId = dp.CreateProperty(testPropertyTwo, llid);
+
+            var propOne = dp.GetProperty(propOneId);
+            var propTwo = dp.GetProperty(propTwoId);
+
+            Assert.AreEqual(llid, propOne.LandlordId);
+            Assert.AreEqual(llid, propTwo.LandlordId);
+        }
+
+        [Test]
+        public void Test_DeleteLandlordWhoHasProperties()
+        {
+            var llid = dp.CreateLandLord(testLandLord);
+            var propOneId = dp.CreateProperty(testPropertyOne, llid);
+            var propTwoId = dp.CreateProperty(testPropertyTwo, llid);
+
+            dp.DeleteLandLord(llid);
+        }
     }
 }
