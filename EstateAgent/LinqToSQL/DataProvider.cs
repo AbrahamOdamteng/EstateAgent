@@ -20,47 +20,53 @@ namespace EstateAgent.LinqToSQL
 
 
         #region Data Readers
-        public IQueryable<Landlord> GetLandLords()
+        public IQueryable<LandlordDTO> GetLandLords()
         {
-            return dataContext.Landlords;
+            return dataContext.Landlords.Select(ll => new LandlordDTO(ll));
         }
 
 
-        /// <summary>
-        /// Retrieve one or more landlords from this datacontext
-        /// </summary>
-        /// <param name="landlordIds">A collection of Landlord Ids</param>
-        /// <returns>And IQueryable of LandLords</returns>
-        public IQueryable<Landlord> GetLandLords(IEnumerable<int> landlordIds)
+        ///// <summary>
+        ///// Retrieve one or more landlords from this datacontext
+        ///// </summary>
+        ///// <param name="landlordIds">A collection of Landlord Ids</param>
+        ///// <returns>And IQueryable of LandLords</returns>
+        //public IQueryable<LandlordDTO> GetLandLords(IEnumerable<int> landlordIds)
+        //{
+        //    return dataContext.Landlords
+        //        .Where(l => landlordIds.Contains(l.LandlordId))
+        //        .Select(ll => new LandlordDTO(ll));
+        //}
+
+        public IQueryable<PropertyDTO> GetProperties()
         {
-            return dataContext.Landlords.Where(l => landlordIds.Contains(l.LandlordId));
+            return dataContext.Properties.Select(p => new PropertyDTO(p));
         }
 
-        public IQueryable<Property> GetProperties()
-        {
-            return dataContext.Properties;
-        }
+        ///// <summary>
+        ///// Retrieve one or more Properties from this datacontext
+        ///// </summary>
+        ///// <param name="propertyId"></param>
+        ///// <returns></returns>
+        //public IQueryable<PropertyDTO> GetProperties(IEnumerable<int> propertyIds)
+        //{
+        //    return dataContext.Properties
+        //        .Where(p => propertyIds.Contains(p.PropertyId))
+        //        .Select(p => new PropertyDTO(p));
+        //}
 
-        /// <summary>
-        /// Retrieve one or more Properties from this datacontext
-        /// </summary>
-        /// <param name="propertyId"></param>
-        /// <returns></returns>
-        public IQueryable<Property> GetProperties(IEnumerable<int> propertyIds)
+        public IQueryable<PropertyDTO> GetPropertiesOfLandlord(int landlordId)
         {
-            return dataContext.Properties.Where(p => propertyIds.Contains(p.PropertyId));
-        }
-
-        public IQueryable<Property> GetPropertiesOfLandlord(int landlordId)
-        {
-            return dataContext.Properties.Where(p => p.LandlordId == landlordId);
+            return dataContext.Properties
+                .Where(p => p.LandlordId == landlordId)
+                .Select(p => new PropertyDTO(p));
         }
         #endregion
 
 
         #region CRUD LandLord Methods
 
-        public int CreateLandLord(LandLordDTO dto)
+        public int CreateLandLord(LandlordDTO dto)
         {
             if (dto is null) return 0;
 
@@ -78,16 +84,16 @@ namespace EstateAgent.LinqToSQL
             return landlord.LandlordId;       
         }
 
-        public LandLordDTO GetLandLord(int landLordId)
+        public LandlordDTO GetLandLord(int landLordId)
         {
             var landLord = dataContext.Landlords.SingleOrDefault(ll => ll.LandlordId == landLordId);
 
             if (landLord is null) return null;
 
-            return new LandLordDTO(landLord);
+            return new LandlordDTO(landLord);
         }
         
-        public void UpdateLandLord(LandLordDTO landLord)
+        public void UpdateLandLord(LandlordDTO landLord)
         {
             var original =  dataContext.Landlords.Single(ll => ll.LandlordId == landLord.Id);
 

@@ -12,7 +12,7 @@ namespace EstateAgent.UnitTests
     public class DataProviderUnitTests
     {
         DataProvider dp = new DataProvider();
-        LandLordDTO testLandLord;
+        LandlordDTO testLandLord;
         PropertyDTO testPropertyOne;
         PropertyDTO testPropertyTwo;
 
@@ -21,7 +21,7 @@ namespace EstateAgent.UnitTests
 
         public DataProviderUnitTests()
         {
-            testLandLord = new LandLordDTO()
+            testLandLord = new LandlordDTO()
             {
                 Forename = "James",
                 Surname = "Bond",
@@ -76,20 +76,21 @@ namespace EstateAgent.UnitTests
             {
                 foreach(var ll in landLords)
                 {
-                    dp.DeleteLandLord(ll.LandlordId);
+                    dp.DeleteLandLord(ll.Id);
                 }
             }
         }
 
         public void RemoveTestPropertiesFromDatabase()
         {
+            
             var properties = dp.GetProperties().Where( p => p.PostCode == PostcodeOne || p.PostCode == PostcodeTwo).ToArray();
 
             if (properties.Any())
             {
                 foreach (var prop in properties)
                 {
-                    dp.DeleteProperty(prop.PropertyId);
+                    dp.DeleteProperty(prop.Id);
                 }
             }
         }
@@ -246,6 +247,18 @@ namespace EstateAgent.UnitTests
             var propTwoId = dp.CreateProperty(testPropertyTwo, llid);
 
             dp.DeleteLandLord(llid);
+        }
+
+        [Test]
+        public void Test_GetPropertiesOfLandlord()
+        {
+            Assert.Fail();
+        }
+
+        [Test]
+        public void Test_GetLandLords()
+        {
+            Assert.Fail();
         }
     }
 }

@@ -37,9 +37,9 @@ namespace EstateAgent.WPF
                 return;
             }
 
-            if(LandlordsDataGrid.SelectedItem is Landlord selectedLandlord)
+            if(LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
             {
-                PropertiesDataGrid.ItemsSource = dataProvider.GetPropertiesOfLandlord(selectedLandlord.LandlordId);
+                PropertiesDataGrid.ItemsSource = dataProvider.GetPropertiesOfLandlord(selectedLandlord.Id);
             }
 
         }

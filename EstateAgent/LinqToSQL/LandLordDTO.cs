@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EstateAgent.LinqToSQL
 {
-    public class LandLordDTO
+    public class LandlordDTO
     {
         public readonly int Id;
 
@@ -16,9 +16,9 @@ namespace EstateAgent.LinqToSQL
         public string Email { get; set; }
 
 
-        public LandLordDTO() { }
+        public LandlordDTO() { }
 
-        public LandLordDTO(string forename, string surname, string email, string phone)
+        public LandlordDTO(string forename, string surname, string email, string phone)
         {
             Forename = forename;
             Surname = surname;
@@ -26,7 +26,7 @@ namespace EstateAgent.LinqToSQL
             Phone = phone;
         }
 
-        public LandLordDTO(Landlord landlord)
+        public LandlordDTO(Landlord landlord)
         {
             Id = landlord.LandlordId;
             Forename = landlord.Forename;
