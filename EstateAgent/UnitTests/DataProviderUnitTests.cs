@@ -16,7 +16,8 @@ namespace EstateAgent.UnitTests
         PropertyDTO testPropertyOne;
         PropertyDTO testPropertyTwo;
 
-        string street = "{071C1FFE-329E-4EAB-950A-6FDE0A54F1A6}";
+        string PostcodeOne = "{071C1FFE}";
+        string PostcodeTwo = "{E5EAA1A6}";
 
         public DataProviderUnitTests()
         {
@@ -32,9 +33,9 @@ namespace EstateAgent.UnitTests
             {
                 AvailableFrom = DateTime.Now,
                 Housenumber = "123",
-                PostCode = "{PROP-01#}",
-                Status = PropertyStatus.Vacant.ToString(),
-                Street = street,
+                PostCode = PostcodeOne,
+                Status = PropertyStatus.Vacant,
+                Street = "seasame street",
                 Town = "Wimbledon",
             };
 
@@ -43,10 +44,10 @@ namespace EstateAgent.UnitTests
             {
                 AvailableFrom = DateTime.Now,
                 Housenumber = "456",
-                PostCode = "{PROP-02#}",
-                Status = PropertyStatus.Vacant.ToString(),
-                Street = street,
-                Town = "Wimbledon",
+                PostCode = PostcodeOne,
+                Status = PropertyStatus.Let,
+                Street = "downing street",
+                Town = "roswell",
             };
         }
 
@@ -82,7 +83,7 @@ namespace EstateAgent.UnitTests
 
         public void RemoveTestPropertiesFromDatabase()
         {
-            var properties = dp.GetProperties().Where( p => p.Street == street).ToArray();
+            var properties = dp.GetProperties().Where( p => p.PostCode == PostcodeOne || p.PostCode == PostcodeTwo).ToArray();
 
             if (properties.Any())
             {
@@ -181,8 +182,6 @@ namespace EstateAgent.UnitTests
         {
             var available = new DateTime(2000, 01, 01);
             var houseNumber = "753";
-            var postCode = "#New#Post#Code";
-
             var status = PropertyStatus.Let;
             var town = "Wimbledon";
             var street = "downing street";
@@ -191,7 +190,37 @@ namespace EstateAgent.UnitTests
             var propId = dp.CreateProperty(testPropertyOne, llid);
             var dto = dp.GetProperty(propId);
 
-            Assert.AreNotEqual(0, propId);
+            dto.AvailableFrom = available;
+            dto.Housenumber = houseNumber;
+            dto.Status = status;
+            dto.Town = town;
+            dto.Street = street;
+            dto.PostCode = PostcodeTwo;
+
+            dp.UpdateProperty(dto);
+
+            var updatedDto = dp.GetProperty(propId);
+
+            Assert.AreEqual(available, updatedDto.AvailableFrom);
+            Assert.AreEqual(houseNumber, updatedDto.Housenumber);
+            Assert.AreEqual(PostcodeTwo, updatedDto.PostCode);
+            Assert.AreEqual(status, updatedDto.Status);
+            Assert.AreEqual(street, updatedDto.Street);
+            Assert.AreEqual(town, updatedDto.Town);
+        }
+
+        [Test]
+        public void Test_DeleteProperty()
+        {
+            var llid = dp.CreateLandLord(testLandLord);
+            var propId = dp.CreateProperty(testPropertyOne, llid);
+            var property = dp.GetProperty(propId);
+            Assert.NotNull(property);
+            dp.DeleteProperty(propId);
+
+            var delProp = dp.GetProperty(propId);
+            Assert.IsNull(delProp);
+
         }
         #endregion
     }

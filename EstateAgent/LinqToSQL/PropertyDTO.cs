@@ -17,7 +17,7 @@ namespace EstateAgent.LinqToSQL
 
         public string PostCode { get; set; }
         public System.DateTime AvailableFrom { get; set; }
-        public string Status { get; set; }
+        public PropertyStatus Status { get; set; }
         
 
         public PropertyDTO() { }
@@ -31,7 +31,7 @@ namespace EstateAgent.LinqToSQL
             Town = prop.Town;
             PostCode = prop.PostCode;
             AvailableFrom = prop.AvailableFrom;
-            Status = prop.Status;
+            Status = (PropertyStatus) Enum.Parse( typeof(PropertyStatus), prop.Status);
             LandlordId = prop.LandlordId;
         }
     }

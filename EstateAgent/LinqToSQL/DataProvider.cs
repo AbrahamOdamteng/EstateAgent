@@ -120,7 +120,7 @@ namespace EstateAgent.LinqToSQL
                 Housenumber = dto.Housenumber,
                 LandlordId = landlordId,
                 PostCode = dto.PostCode,
-                Status = dto.Status,
+                Status = dto.Status.ToString(),
                 Street = dto.Street,
                 Town = dto.Town,
             };
@@ -142,17 +142,15 @@ namespace EstateAgent.LinqToSQL
 
         public void UpdateProperty(PropertyDTO prop)
         {
-            var original = dataContext.Properties.Single(ll => ll.LandlordId == prop.Id);
+            var original = dataContext.Properties.Single(ll => ll.PropertyId == prop.Id);
 
             original.AvailableFrom = prop.AvailableFrom;
             original.Housenumber = prop.Housenumber;
             original.PostCode = prop.PostCode;
 
-            original.Status = prop.Status;
+            original.Status = prop.Status.ToString();
             original.Street = prop.Street;
             original.Town = prop.Town;
-
-            original.Status = prop.Status;
 
             dataContext.SubmitChanges();
         }
