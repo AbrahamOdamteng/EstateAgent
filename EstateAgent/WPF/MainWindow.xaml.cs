@@ -92,5 +92,12 @@ namespace EstateAgent.WPF
                 RefreshData();
             }
         }
+
+        private void ButtonCreateProperty_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new CRUPropertyWindow();
+            window.ShowDialog();
+
+        }
     }
 }

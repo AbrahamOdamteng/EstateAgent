@@ -75,6 +75,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WPF\CRUPropertyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WPF\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +95,9 @@
     <Compile Include="LinqToSQL\DataProvider.cs" />
     <Compile Include="WPF\CRULandLordWindow.xaml.cs">
       <DependentUpon>CRULandLordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPF\CRUPropertyWindow.xaml.cs">
+      <DependentUpon>CRUPropertyWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPF\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -136,6 +143,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EstateAgent.LinqToSQL.Landlord.datasource" />
+    <None Include="Properties\DataSources\EstateAgent.LinqToSQL.PropertyDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

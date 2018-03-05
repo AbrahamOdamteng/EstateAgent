@@ -41,7 +41,7 @@
                 </Grid.RowDefinitions>
 
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Button Name="ButtonCreateProperty" Content="Create" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
+                    <Button Name="ButtonCreateProperty" Content="Create" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" Click="ButtonCreateProperty_Click" />
                     <Button Name="ButtonUpdateProperty" Content="Update" HorizontalAlignment="Left" Height="20"  VerticalAlignment="Top" Width="50" />
                     <Button Name="ButtonDeleteProperty" Content="Delete" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="50" />
                 </StackPanel>
