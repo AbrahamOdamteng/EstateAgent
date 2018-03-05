@@ -62,6 +62,8 @@ namespace EstateAgent.LinqToSQL
 
         public int CreateLandLord(LandLordDTO dto)
         {
+            if (dto is null) return 0;
+
             var landlord = new Landlord()
             {
                 Forename = dto.Forename,
@@ -76,7 +78,7 @@ namespace EstateAgent.LinqToSQL
             return landlord.LandlordId;       
         }
 
-        public LandLordDTO GetLandLand(int landLordId)
+        public LandLordDTO GetLandLord(int landLordId)
         {
             var landLord = dataContext.Landlords.SingleOrDefault(ll => ll.LandlordId == landLordId);
 
@@ -85,7 +87,6 @@ namespace EstateAgent.LinqToSQL
             return new LandLordDTO(landLord);
         }
         
-
         public void UpdateLandLord(LandLordDTO landLord)
         {
             var original =  dataContext.Landlords.Single(ll => ll.LandlordId == landLord.Id);
@@ -105,6 +106,64 @@ namespace EstateAgent.LinqToSQL
             dataContext.SubmitChanges();
         }
 
+        #endregion
+
+        #region CRUD Property Methods
+
+        public int CreateProperty(PropertyDTO dto, int landlordId)
+        {
+            if (dto is null) return 0;
+
+            var property = new Property()
+            {
+                AvailableFrom = dto.AvailableFrom,
+                Housenumber = dto.Housenumber,
+                LandlordId = landlordId,
+                PostCode = dto.PostCode,
+                Status = dto.Status,
+                Street = dto.Street,
+                Town = dto.Town,
+            };
+            dataContext.Properties.InsertOnSubmit(property);
+            dataContext.SubmitChanges();
+
+            return property.PropertyId;
+        }
+
+
+        public PropertyDTO GetProperty(int propertyId)
+        {
+            var property = dataContext.Properties.SingleOrDefault(ll => ll.PropertyId == propertyId);
+
+            if (property is null) return null;
+
+            return new PropertyDTO(property);
+        }
+
+        public void UpdateProperty(PropertyDTO prop)
+        {
+            var original = dataContext.Properties.Single(ll => ll.LandlordId == prop.Id);
+
+            original.AvailableFrom = prop.AvailableFrom;
+            original.Housenumber = prop.Housenumber;
+            original.PostCode = prop.PostCode;
+
+            original.Status = prop.Status;
+            original.Street = prop.Street;
+            original.Town = prop.Town;
+
+            original.Status = prop.Status;
+
+            dataContext.SubmitChanges();
+        }
+
+
+        public void DeleteProperty(int propertyId)
+        {
+            var property = dataContext.Properties.Single(prop => prop.PropertyId == propertyId);
+            dataContext.Properties.DeleteOnSubmit(property);
+            dataContext.SubmitChanges();
+        }
         #endregion
     }
 }
