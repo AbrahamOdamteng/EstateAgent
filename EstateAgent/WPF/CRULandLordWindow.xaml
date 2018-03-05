@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:EstateAgent.WPF"
         xmlns:LinqToSQL="clr-namespace:EstateAgent.LinqToSQL" x:Class="EstateAgent.WPF.CRULandLordWindow"
         mc:Ignorable="d"
-        Title="CRULandLordWindow" Height="216.95" Width="222.881" Loaded="Window_Loaded">
+        Title="CRULandLordWindow" Height="233.95" Width="276.881" Loaded="Window_Loaded">
 
     <Window.Resources>
         <CollectionViewSource x:Key="landlordViewSource" d:DesignSource="{d:DesignInstance {x:Type LinqToSQL:Landlord}, CreateList=True}"/>
     </Window.Resources>
-    <Grid x:Name="grid1" DataContext="{StaticResource landlordViewSource}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid x:Name="grid1" DataContext="{StaticResource landlordViewSource}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="25,25,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -25,17 +25,17 @@
         </Grid.RowDefinitions>
 
         <Label Content="Forename:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="forenameTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3"  Grid.Row="0" Text="{Binding Forename, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+        <TextBox x:Name="forenameTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3,0,10,0"  Grid.Row="0" Text="{Binding Forename, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
 
         <Label Content="Surname:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBox x:Name="surnameTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3" Grid.Row="1" Text="{Binding Surname, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+        <TextBox x:Name="surnameTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3,0,10,0" Grid.Row="1" Text="{Binding Surname, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
 
         <Label Content="Email:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-        <TextBox x:Name="emailTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3" Grid.Row="2" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+        <TextBox x:Name="emailTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3,0,10,0" Grid.Row="2" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
 
         <Label Content="Phone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-        <TextBox x:Name="phoneTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3" Grid.Row="3" Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+        <TextBox x:Name="phoneTextBox" Grid.Column="1" HorizontalAlignment="Stretch" Height="23" Margin="3,0,10,0" Grid.Row="3" Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
 
-        <Button Name="CRUButton" Grid.ColumnSpan="2" Grid.Column="0" Content="CRU" HorizontalAlignment="Center" Height="22"  Grid.Row="4" VerticalAlignment="Bottom" Width="100" Margin="58,0,57,1" Click="CRUButton_Click"/>
+        <Button Name="CRUButton" Grid.ColumnSpan="1" Grid.Column="1" Content="CRU" HorizontalAlignment="Left" Height="22"  Grid.Row="4" VerticalAlignment="Bottom" Width="100" Margin="3,5,0,10" Click="CRUButton_Click"/>
     </Grid>
 </Window>

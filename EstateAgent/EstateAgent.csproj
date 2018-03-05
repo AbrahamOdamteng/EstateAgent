@@ -96,6 +96,7 @@
     <Compile Include="WPF\CRULandLordWindow.xaml.cs">
       <DependentUpon>CRULandLordWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPF\CRUMode.cs" />
     <Compile Include="WPF\CRUPropertyWindow.xaml.cs">
       <DependentUpon>CRUPropertyWindow.xaml</DependentUpon>
     </Compile>

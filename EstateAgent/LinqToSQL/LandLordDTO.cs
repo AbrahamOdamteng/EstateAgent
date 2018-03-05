@@ -33,5 +33,14 @@ namespace EstateAgent.LinqToSQL
             Email = landlord.Email;
             Phone = landlord.Phone;
         }
+
+        public LandlordDTO(LandlordDTO copy)
+        {
+            Id = copy.Id;
+            Forename = copy.Forename;
+            Surname = copy.Surname;
+            Email = copy.Email;
+            Phone = copy.Phone;
+        }
     }
 }

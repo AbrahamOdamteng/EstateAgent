@@ -19,12 +19,23 @@ namespace EstateAgent.WPF
     /// </summary>
     public partial class CRULandLordWindow : Window
     {
-
         readonly LandlordDTO Landlord;
-        public CRULandLordWindow(LandlordDTO landlord)
+
+        public CRULandLordWindow(LandlordDTO landlord, CRUMode cruMode)
         {
             InitializeComponent();
             this.Landlord = landlord;
+
+            if(cruMode == CRUMode.Create)
+            {
+                this.Title = "Create Landlord";
+                this.CRUButton.Content = "Create";
+            }
+            else
+            {
+                this.Title = "Update Landlord";
+                this.CRUButton.Content = "Update";
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -37,6 +48,7 @@ namespace EstateAgent.WPF
 
         private void CRUButton_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = true;
             this.Close();
         }
     }

@@ -43,6 +43,7 @@ namespace EstateAgent.WPF
 
         private void CRUButton_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = true;
             this.Close();
         }
     }

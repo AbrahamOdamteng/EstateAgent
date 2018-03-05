@@ -39,5 +39,18 @@ namespace EstateAgent.LinqToSQL
             AvailableFrom = prop.AvailableFrom;
             Status = (PropertyStatus) Enum.Parse( typeof(PropertyStatus), prop.Status);
         }
+
+        public PropertyDTO(PropertyDTO copy)
+        {
+            Id = copy.Id;
+            LandlordId = copy.LandlordId;
+
+            Housenumber = copy.Housenumber;
+            Street = copy.Street;
+            Town = copy.Town;
+            PostCode = copy.PostCode;
+            AvailableFrom = copy.AvailableFrom;
+            Status = copy.Status;
+        }
     }
 }

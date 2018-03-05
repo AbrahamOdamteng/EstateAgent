@@ -51,23 +51,25 @@ namespace EstateAgent.WPF
         private void ButtonCreateLandlord_Click(object sender, RoutedEventArgs e)
         {
             var landLord = new LandlordDTO();
-            var window = new CRULandLordWindow(landLord);
+            var window = new CRULandLordWindow(landLord, CRUMode.Create);
             window.Title = "Create Landlord";
             window.CRUButton.Content = "Create";
-            window.ShowDialog();
+            var result = window.ShowDialog();
 
-            dataProvider.CreateLandLord(landLord);
-
-            RefreshLandlords();
+            if(result.HasValue && result.Value)
+            {
+                dataProvider.CreateLandLord(landLord);
+                RefreshLandlords();
+            }
         }
 
         private void ButtonDeleteLandlord_Click(object sender, RoutedEventArgs e)
         {
             if (LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
             {
-                var msg = $"Deleting this landlord will also delete all properties owned by this landlord.\n" +
+                var msg = $"Deleting this landlord will also delete all properties owned by this landlord." +
                     $" Do you wish to proceed?";
-                var result = MessageBox.Show(msg, "Delete Landlord",MessageBoxButton.YesNo);
+                var result = MessageBox.Show(msg, "Delete Landlord",MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if(result == MessageBoxResult.Yes)
                 {
@@ -79,17 +81,18 @@ namespace EstateAgent.WPF
 
         private void ButtonUpdateLandlord_Click(object sender, RoutedEventArgs e)
         {
-
             if (LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
             {
-                var window = new CRULandLordWindow(selectedLandlord);
-                window.Title = "Update Landlord";
-                window.CRUButton.Content = "Update";
-                window.ShowDialog();
+                var copy = new LandlordDTO(selectedLandlord);
+                var window = new CRULandLordWindow(copy, CRUMode.Update);
 
-                dataProvider.UpdateLandLord(selectedLandlord);
+                var result = window.ShowDialog();
 
-                RefreshLandlords();
+                if(result.HasValue && result.Value)
+                {
+                    dataProvider.UpdateLandLord(copy);
+                    RefreshLandlords();
+                }
             }
         }
 
@@ -101,13 +104,13 @@ namespace EstateAgent.WPF
 
                 var window = new CRUPropertyWindow(newProperty);
 
-                window.ShowDialog();
-                dataProvider.CreateProperty(newProperty);
-                RefreshProperties();
+                var result = window.ShowDialog();
+                if(result.HasValue && result.Value)
+                {
+                    dataProvider.CreateProperty(newProperty);
+                    RefreshProperties();
+                }
             }
-
-
-
         }
 
         private void ButtonDeleteProperty_Click(object sender, RoutedEventArgs e)
@@ -130,13 +133,15 @@ namespace EstateAgent.WPF
         {
             if (PropertiesDataGrid.SelectedItem is PropertyDTO selectedProperty)
             {
-                var window = new CRUPropertyWindow(selectedProperty);
+                var copy = new PropertyDTO(selectedProperty);
+                var window = new CRUPropertyWindow(copy);
 
-                window.ShowDialog();
-
-                dataProvider.UpdateProperty(selectedProperty);
-
-                RefreshLandlords();
+                var result = window.ShowDialog();
+                if(result.HasValue && result.Value)
+                {
+                    dataProvider.UpdateProperty(copy);
+                    RefreshProperties();
+                }
             }
         }
     }
