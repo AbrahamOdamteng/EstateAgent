@@ -76,5 +76,21 @@ namespace EstateAgent.WPF
                 }
             }
         }
+
+        private void ButtonUpdateLandlord_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (LandlordsDataGrid.SelectedItem is LandlordDTO selectedLandlord)
+            {
+                var window = new CRULandLordWindow(selectedLandlord);
+                window.Title = "Update Landlord";
+                window.CRUButton.Content = "Update";
+                window.ShowDialog();
+
+                dataProvider.UpdateLandLord(selectedLandlord);
+
+                RefreshData();
+            }
+        }
     }
 }
