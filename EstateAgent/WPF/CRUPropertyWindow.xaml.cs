@@ -49,6 +49,12 @@ namespace EstateAgent.WPF
 
         private void CRUButton_Click(object sender, RoutedEventArgs e)
         {
+            if (propertyDTO.ContainsEmptyValues())
+            {
+                MessageBox.Show("Empty Values are not allowed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             this.DialogResult = true;
             this.Close();
         }

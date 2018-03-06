@@ -52,5 +52,13 @@ namespace EstateAgent.LinqToSQL
             AvailableFrom = copy.AvailableFrom;
             Status = copy.Status;
         }
+
+        public bool ContainsEmptyValues()
+        {
+            return string.IsNullOrWhiteSpace(Housenumber) ||
+                string.IsNullOrWhiteSpace(Street) ||
+                string.IsNullOrWhiteSpace(Town) ||
+                string.IsNullOrWhiteSpace(PostCode);
+        }
     }
 }
