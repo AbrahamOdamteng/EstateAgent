@@ -30,6 +30,7 @@ namespace EstateAgent.WPF
         {
             InitializeComponent();
             propertyDTO = propertyDto;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -39,6 +40,11 @@ namespace EstateAgent.WPF
             if (propertyDTO is null) return;
 
             propertyDTOViewSource.Source = new PropertyDTO[] { propertyDTO };
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(PropertyStatus));
+            if(propertyDTO != null)
+            {
+                statusComboBox.SelectedItem = propertyDTO.Status;
+            }
         }
 
         private void CRUButton_Click(object sender, RoutedEventArgs e)
