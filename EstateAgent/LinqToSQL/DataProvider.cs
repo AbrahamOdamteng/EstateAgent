@@ -20,40 +20,35 @@ namespace EstateAgent.LinqToSQL
 
 
         #region Data Readers
-        public IQueryable<LandlordDTO> GetLandLords()
+        //public IQueryable<Landlord> LandLords
+        //{
+        //    get { return dataContext.Landlords; }
+        //}
+
+        public IEnumerable<LandlordDTO> LandLordDTOs
         {
-            return dataContext.Landlords.Select(ll => new LandlordDTO(ll));
+            get
+            {
+                return dataContext.Landlords
+                    .Select( ll => new LandlordDTO(ll))
+                    .ToArray();
+            }
         }
 
 
-        ///// <summary>
-        ///// Retrieve one or more landlords from this datacontext
-        ///// </summary>
-        ///// <param name="landlordIds">A collection of Landlord Ids</param>
-        ///// <returns>And IQueryable of LandLords</returns>
-        //public IQueryable<LandlordDTO> GetLandLords(IEnumerable<int> landlordIds)
+        //public IQueryable<Property> Properties
         //{
-        //    return dataContext.Landlords
-        //        .Where(l => landlordIds.Contains(l.LandlordId))
-        //        .Select(ll => new LandlordDTO(ll));
+        //    get {return dataContext.Properties;}
         //}
 
-        public IQueryable<PropertyDTO> GetProperties()
+        public IEnumerable<PropertyDTO> PropertyDTOs
         {
-            return dataContext.Properties.Select(p => new PropertyDTO(p));
+            get {
+                return dataContext.Properties
+                    .Select(p => new PropertyDTO(p))
+                    .ToArray();
+                }
         }
-
-        ///// <summary>
-        ///// Retrieve one or more Properties from this datacontext
-        ///// </summary>
-        ///// <param name="propertyId"></param>
-        ///// <returns></returns>
-        //public IQueryable<PropertyDTO> GetProperties(IEnumerable<int> propertyIds)
-        //{
-        //    return dataContext.Properties
-        //        .Where(p => propertyIds.Contains(p.PropertyId))
-        //        .Select(p => new PropertyDTO(p));
-        //}
 
         public IQueryable<PropertyDTO> GetPropertiesOfLandlord(int landlordId)
         {

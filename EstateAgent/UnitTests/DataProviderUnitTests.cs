@@ -13,8 +13,6 @@ namespace EstateAgent.UnitTests
     {
         DataProvider dp = new DataProvider();
         LandlordDTO testLandLord;
-        PropertyDTO testPropertyOne;
-        PropertyDTO testPropertyTwo;
 
         string PostcodeOne = "{071C1FFE}";
         string PostcodeTwo = "{E5EAA1A6}";
@@ -28,8 +26,11 @@ namespace EstateAgent.UnitTests
                 Email = "james.bond@mi5.com",
                 Phone = "0#123#456#789#",
             };
+        }
 
-            testPropertyOne = new PropertyDTO()
+        PropertyDTO CreateProperty(int landlordId)
+        {
+            return new PropertyDTO(landlordId)
             {
                 AvailableFrom = DateTime.Now,
                 Housenumber = "123",
@@ -37,17 +38,6 @@ namespace EstateAgent.UnitTests
                 Status = PropertyStatus.Vacant,
                 Street = "seasame street",
                 Town = "Wimbledon",
-            };
-
-
-            testPropertyTwo = new PropertyDTO()
-            {
-                AvailableFrom = DateTime.Now,
-                Housenumber = "456",
-                PostCode = PostcodeOne,
-                Status = PropertyStatus.Let,
-                Street = "downing street",
-                Town = "roswell",
             };
         }
 
@@ -68,7 +58,7 @@ namespace EstateAgent.UnitTests
 
         public void RemoveTestLandlordFromDatabase()
         {
-            var landLords = dp.GetLandLords()
+            var landLords = dp.LandLordDTOs
                 .Where(ll => ll.Phone == testLandLord.Phone)
                 .ToArray();
 
@@ -84,7 +74,9 @@ namespace EstateAgent.UnitTests
         public void RemoveTestPropertiesFromDatabase()
         {
             
-            var properties = dp.GetProperties().Where( p => p.PostCode == PostcodeOne || p.PostCode == PostcodeTwo).ToArray();
+            var properties = dp.PropertyDTOs
+                .Where( p => p.PostCode == PostcodeOne || p.PostCode == PostcodeTwo)
+                .ToArray();
 
             if (properties.Any())
             {
@@ -166,7 +158,7 @@ namespace EstateAgent.UnitTests
         public void Test_CreateProperty()
         {
             var llid =  dp.CreateLandLord(testLandLord);
-            var propId =  dp.CreateProperty(testPropertyOne);
+            var propId =  dp.CreateProperty(CreateProperty(llid));
             Assert.AreNotEqual(0, propId);
         }
 
@@ -188,7 +180,7 @@ namespace EstateAgent.UnitTests
             var street = "downing street";
 
             var llid = dp.CreateLandLord(testLandLord);
-            var propId = dp.CreateProperty(testPropertyOne);
+            var propId = dp.CreateProperty(CreateProperty(llid));
             var dto = dp.GetProperty(propId);
 
             dto.AvailableFrom = available;
@@ -214,7 +206,7 @@ namespace EstateAgent.UnitTests
         public void Test_DeleteProperty()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propId = dp.CreateProperty(testPropertyOne);
+            var propId = dp.CreateProperty(CreateProperty(llid));
             var property = dp.GetProperty(propId);
             Assert.NotNull(property);
             dp.DeleteProperty(propId);
@@ -229,8 +221,8 @@ namespace EstateAgent.UnitTests
         public void Test_AddMultiplePropertiesToLandlord()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propOneId = dp.CreateProperty(testPropertyOne);
-            var propTwoId = dp.CreateProperty(testPropertyTwo);
+            var propOneId = dp.CreateProperty(CreateProperty(llid));
+            var propTwoId = dp.CreateProperty(CreateProperty(llid));
 
             var propOne = dp.GetProperty(propOneId);
             var propTwo = dp.GetProperty(propTwoId);
@@ -243,22 +235,10 @@ namespace EstateAgent.UnitTests
         public void Test_DeleteLandlordWhoHasProperties()
         {
             var llid = dp.CreateLandLord(testLandLord);
-            var propOneId = dp.CreateProperty(testPropertyOne);
-            var propTwoId = dp.CreateProperty(testPropertyTwo);
+            var propOneId = dp.CreateProperty(CreateProperty(llid));
+            var propTwoId = dp.CreateProperty(CreateProperty(llid));
 
             dp.DeleteLandLord(llid);
-        }
-
-        [Test]
-        public void Test_GetPropertiesOfLandlord()
-        {
-            Assert.Fail();
-        }
-
-        [Test]
-        public void Test_GetLandLords()
-        {
-            Assert.Fail();
         }
     }
 }

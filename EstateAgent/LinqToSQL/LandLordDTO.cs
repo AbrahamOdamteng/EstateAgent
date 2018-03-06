@@ -42,5 +42,13 @@ namespace EstateAgent.LinqToSQL
             Email = copy.Email;
             Phone = copy.Phone;
         }
+
+        public bool ContainsEmptyValues()
+        {
+            return string.IsNullOrWhiteSpace(Forename) ||
+                string.IsNullOrWhiteSpace(Surname) ||
+                string.IsNullOrWhiteSpace(Email) ||
+                string.IsNullOrWhiteSpace(Phone);
+        }
     }
 }

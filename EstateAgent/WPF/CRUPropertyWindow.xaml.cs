@@ -21,16 +21,30 @@ namespace EstateAgent.WPF
     public partial class CRUPropertyWindow : Window
     {
         readonly PropertyDTO propertyDTO;
-        public CRUPropertyWindow()
-        {
-            InitializeComponent();
-        }
 
-        public CRUPropertyWindow(PropertyDTO propertyDto)
+
+        public CRUPropertyWindow(PropertyDTO propertyDto, CRUMode cruMode)
         {
             InitializeComponent();
             propertyDTO = propertyDto;
 
+
+            if (cruMode == CRUMode.Create)
+            {
+                this.Title = "Create Property";
+                this.CRUButton.Content = "Create";
+            }
+            else
+            {
+                this.Title = "Update Property";
+                this.CRUButton.Content = "Update";
+            }
+
+            statusComboBox.ItemsSource = Enum.GetValues(typeof(PropertyStatus));
+            if (propertyDTO != null)
+            {
+                statusComboBox.SelectedItem = propertyDTO.Status;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -40,11 +54,7 @@ namespace EstateAgent.WPF
             if (propertyDTO is null) return;
 
             propertyDTOViewSource.Source = new PropertyDTO[] { propertyDTO };
-            statusComboBox.ItemsSource = Enum.GetValues(typeof(PropertyStatus));
-            if(propertyDTO != null)
-            {
-                statusComboBox.SelectedItem = propertyDTO.Status;
-            }
+
         }
 
         private void CRUButton_Click(object sender, RoutedEventArgs e)

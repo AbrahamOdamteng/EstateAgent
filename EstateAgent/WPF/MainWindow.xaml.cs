@@ -31,7 +31,7 @@ namespace EstateAgent.WPF
 
         void RefreshLandlords()
         {
-            LandlordsDataGrid.ItemsSource = dataProvider.GetLandLords();
+            LandlordsDataGrid.ItemsSource = dataProvider.LandLordDTOs;
         }
 
 
@@ -75,6 +75,7 @@ namespace EstateAgent.WPF
                 {
                     dataProvider.DeleteLandLord(selectedLandlord.Id);
                     RefreshLandlords();
+                    PropertiesDataGrid.ItemsSource = null;
                 }
             }
         }
@@ -102,7 +103,7 @@ namespace EstateAgent.WPF
             {
                 var newProperty = new PropertyDTO(selectedLandlord.Id);
 
-                var window = new CRUPropertyWindow(newProperty);
+                var window = new CRUPropertyWindow(newProperty, CRUMode.Create);
 
                 var result = window.ShowDialog();
                 if(result.HasValue && result.Value)
@@ -134,7 +135,7 @@ namespace EstateAgent.WPF
             if (PropertiesDataGrid.SelectedItem is PropertyDTO selectedProperty)
             {
                 var copy = new PropertyDTO(selectedProperty);
-                var window = new CRUPropertyWindow(copy);
+                var window = new CRUPropertyWindow(copy, CRUMode.Update);
 
                 var result = window.ShowDialog();
                 if(result.HasValue && result.Value)
